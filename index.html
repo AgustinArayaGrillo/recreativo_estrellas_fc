@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recreativo Estrellas F.C. — Jovita, Córdoba</title>
+  <meta name="description" content="Sitio oficial del Recreativo Estrellas F.C., el club más ganador de la Liga Regional General Roca. Jovita, Córdoba, Argentina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black:  #0d0d0d;
+      --white:  #ffffff;
+      --yellow: #f5c518;
+      --yellow-dark: #d4a900;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #242424;
+      --gray-500: #555555;
+      --gray-300: #aaaaaa;
+      --transition: 0.3s ease;
+      --shadow-yellow: 0 0 24px rgba(245, 197, 24, 0.4);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===========================
+       UTILITY
+    =========================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .section-title span {
+      color: var(--yellow);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.8rem 2rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
+
+    .btn-yellow:hover {
+      background: var(--yellow-dark);
+      border-color: var(--yellow-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-yellow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ===========================
+       NAVBAR
+    =========================== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.9rem 0;
+      background: transparent;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: rgba(13, 13, 13, 0.97);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+      padding: 0.5rem 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--black);
+      letter-spacing: 0.04em;
+      box-shadow: 0 0 12px rgba(245,197,24,0.35);
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--gray-300);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      transition: color var(--transition);
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--yellow);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links .nav-cta {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.45rem 1.1rem;
+      border-radius: 3px;
+      font-size: 0.78rem;
+    }
+
+    .nav-links .nav-cta::after { display: none; }
+
+    .nav-links .nav-cta:hover {
+      background: var(--yellow-dark);
+      color: var(--black);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.3), rgba(13,13,13,0.85)), url('assets/488160418_1471092664186469_7618115757013939030_n (1).jpg') center/cover no-repeat;
+      padding: 6rem 1.25rem 4rem;
+      overflow: hidden;
+    }
+
+    /* Animated pattern overlay */
+    #inicio::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(245,197,24,0.02) 60px,
+          rgba(245,197,24,0.02) 61px
+        );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.2rem, 10vw, 8rem);
+      letter-spacing: 0.04em;
+      line-height: 0.92;
+      color: var(--white);
+      text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-location {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 3.5vw, 1.7rem);
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+      text-shadow: 0 0 20px rgba(245,197,24,0.4);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2.2s infinite;
+    }
+
+    .hero-scroll svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.5;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===========================
+       STATS BAR
+    =========================== */
+    #stats {
+      background: var(--gray-800);
+      border-top: 1px solid rgba(245,197,24,0.15);
+      border-bottom: 1px solid rgba(245,197,24,0.15);
+      padding: 2rem 1.25rem;
+    }
+
+    .stats-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: rgba(245,197,24,0.2);
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(245,197,24,0.3);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      margin-top: 0.3rem;
+    }
+
+    /* ===========================
+       HISTORIA
+    =========================== */
+    #historia {
+      padding: 6rem 1.25rem;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #historia::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(245,197,24,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .historia-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .historia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .historia-text p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.2rem;
+    }
+
+    .historia-text p:last-child { margin-bottom: 0; }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--yellow), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2rem 1.5rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -0.45rem;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      background: var(--yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(245,197,24,0.5);
+    }
+
+    .timeline-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--yellow);
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+
+    .timeline-desc {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.2rem;
+      line-height: 1.6;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      background: rgba(245,197,24,0.12);
+      color: var(--yellow);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-top: 0.4rem;
+    }
+
+    /* ===========================
+       SORTEOS
+    =========================== */
+    #sorteos {
+      padding: 6rem 1.25rem;
+      background: var(--gray-900);
+      position: relative;
+    }
+
+    .sorteos-header {
+      margin-bottom: 3rem;
+    }
+
+    .sorteo-card {
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+      background: var(--gray-800);
+      border: 1px solid rgba(245,197,24,0.3);
+      border-radius: 6px;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 0 40px rgba(245,197,24,0.08), inset 0 0 40px rgba(245,197,24,0.02);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .sorteo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+    }
+
+    .sorteo-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    .sorteo-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .sorteo-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .sorteo-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      margin-bottom: 1.8rem;
+    }
+
+    .sorteo-date-icon {
+      color: var(--yellow);
+    }
+
+    .sorteo-note {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      text-align: center;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 2rem;
+    }
+
+    /* ===========================
+       CTA — HACERSE SOCIO
+    =========================== */
+    #socio {
+      padding: 6rem 1.25rem;
+      background: var(--yellow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #socio::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(0,0,0,0.03) 40px,
+          rgba(0,0,0,0.03) 41px
+        );
+    }
+
+    .socio-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .socio-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(13,13,13,0.55);
+      margin-bottom: 0.6rem;
+    }
+
+    .socio-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      letter-spacing: 0.04em;
+      color: var(--black);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .socio-sub {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 400;
+      color: rgba(13,13,13,0.7);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+      font-size: 0.88rem;
+      padding: 0.9rem 2.4rem;
+    }
+
+    .btn-dark:hover {
+      background: #222;
+      border-color: #222;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: var(--gray-900);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem 1.25rem 2rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-logo-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--black);
+    }
+
+    .footer-logo-text {
+      text-align: left;
+    }
+
+    .footer-logo-text strong {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      display: block;
+    }
+
+    .footer-logo-text span {
+      font-size: 0.72rem;
+      color: var(--gray-300);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--gray-300);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      transition: all var(--transition);
+    }
+
+    .footer-social a:hover {
+      color: var(--yellow);
+      border-color: rgba(245,197,24,0.4);
+      background: rgba(245,197,24,0.05);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      letter-spacing: 0.06em;
+    }
+
+    /* ===========================
+       MOBILE — RESPONSIVE
+    =========================== */
+    @media (max-width: 900px) {
+      .historia-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Hamburger nav */
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(13,13,13,0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.2rem;
+        z-index: 999;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1.05rem;
+      }
+
+      .nav-links .nav-cta {
+        padding: 0.7rem 2rem;
+        font-size: 0.9rem;
+      }
+
+      .stat-item:not(:last-child)::after {
+        display: none;
+      }
+
+      .stats-grid {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .stat-item {
+        padding: 0.6rem 1rem;
+      }
+
+      #historia, #sorteos {
+        padding: 4rem 1.25rem;
+      }
+
+      #socio {
+        padding: 4.5rem 1.25rem;
+      }
+
+      .sorteo-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===========================
+       NAVBAR
+  =========================== -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="#inicio" class="nav-logo" aria-label="Inicio — Recreativo Estrellas F.C.">
+          <img src="assets/escudo.png" alt="Escudo Recreativo Estrellas FC" style="height:44px; width:44px; object-fit:contain; filter:drop-shadow(0 0 8px rgba(245,197,24,0.3));" />
+          <div class="nav-logo-text">
+            Recreativo Estrellas
+            <small>Jovita, Córdoba</small>
+          </div>
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="#inicio"   class="nav-link active">Inicio</a></li>
+          <li><a href="#historia" class="nav-link">Historia</a></li>
+          <li><a href="#sorteos"  class="nav-link">Sorteos</a></li>
+          <li>
+            <a href="https://recreativo-estrellas-fc-production.up.railway.app/hacerse-socio.html"
+               target="_blank" rel="noopener noreferrer"
+               class="nav-link nav-cta">Hacerse Socio</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===========================
+       HERO
+  =========================== -->
+  <section id="inicio" role="banner">
+    <div class="hero-content">
+      <img src="assets/escudo.png" alt="Escudo Recreativo Estrellas FC" style="width:110px; height:110px; object-fit:contain; margin-bottom:1rem; filter:drop-shadow(0 0 24px rgba(245,197,24,0.5));" />
+      <p class="hero-badge" aria-label="Jovita, Córdoba, Argentina">Jovita · Córdoba · Argentina</p>
+      <h1 class="hero-title">Recreativo<br>Estrellas F.C.</h1>
+      <p class="hero-location">Jovita, Córdoba</p>
+      <p class="hero-subtitle">18 Veces Campeones de la Liga General Roca</p>
+      <div class="hero-buttons">
+        <a href="https://recreativo-estrellas-fc-production.up.railway.app/hacerse-socio.html"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-yellow">Hacerse Socio</a>
+        <a href="#historia" class="btn btn-outline">Nuestra Historia</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ===========================
+       STATS BAR
+  =========================== -->
+  <section id="stats" aria-label="Estadísticas del club">
+    <div class="container">
+      <div class="stats-grid">
+
+        <div class="stat-item fade-in">
+          <div class="stat-number">1968</div>
+          <div class="stat-label">Fundación</div>
+        </div>
+
+        <div class="stat-item fade-in fade-in-delay-1">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Títulos Regionales</div>
+        </div>
+
+        <div class="stat-item fade-in fade-in-delay-2">
+          <div class="stat-number">2003</div>
+          <div class="stat-label">Fusión institucional</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       HISTORIA
+  =========================== -->
+  <section id="historia" aria-labelledby="historia-title">
+    <div class="container">
+
+      <div class="historia-header fade-in">
+        <p class="section-subtitle">El club más ganador</p>
+        <h2 class="section-title" id="historia-title">Nuestra <span>Historia</span></h2>
+      </div>
+
+      <div class="historia-grid">
+
+        <!-- Text column -->
+        <div class="historia-text fade-in">
+          <p>
+            El <strong>Recreativo Estrellas F.C.</strong> nació el <strong>26 de diciembre de 2003</strong>, cuando dos instituciones históricas de Jovita decidieron unir sus fuerzas: el Club Recreativo Jovita —fundado el 1° de junio de 1915— y las Estrellas Recreativas Fútbol Club, fundadas el 5 de marzo de 1968.
+          </p>
+          <p>
+            Las Estrellas Recreativas nacieron de un grupo de jóvenes que se juntaban a jugar al fútbol cerca de la estación de tren de Jovita, participando en torneos organizados por la Sociedad Italiana local. Pasaron primero por los nombres <em>"Central Santa Magdalena"</em> y <em>"Estrellas del Sur"</em> hasta consolidarse como institución.
+          </p>
+          <p>
+            Desde sus inicios, el club se convirtió en el más ganador de la <strong>Liga Regional General Roca</strong>, acumulando <strong>18 títulos</strong> — incluyendo el histórico tetracampeonato de 1970 a 1973, dos temporadas invictos (1972 y 1985), y el más reciente Apertura 2023.
+          </p>
+        </div>
+
+        <!-- Fotos históricas -->
+        <div class="fade-in" style="margin-bottom:2rem; display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <img src="assets/480445950_9150151391758413_8892936117047239910_n.jpg"
+                 alt="Plantel histórico de Estrellas Recreativas"
+                 style="width:100%; border-radius:10px; border:1px solid #2a2a2a; filter:grayscale(15%);" />
+            <p style="font-size:0.72rem; color:#666; text-align:center; margin-top:0.4rem;">Plantel histórico — Estrellas Recreativas F.C.</p>
+          </div>
+        </div>
+
+        <!-- Timeline column -->
+        <div class="fade-in fade-in-delay-1">
+          <div class="timeline" role="list" aria-label="Línea de tiempo histórica">
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">1915</div>
+              <div class="timeline-desc">Fundación del Club Recreativo Jovita, una de las instituciones que daría origen al club.</div>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">1968</div>
+              <div class="timeline-desc">Fundación de las Estrellas Recreativas F.C. por jóvenes que se reunían a jugar fútbol cerca de la estación de tren.</div>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">1970–1973</div>
+              <div class="timeline-desc">Tetracampeonato consecutivo en la Liga Regional General Roca. En 1972, la temporada transcurrió invicta.</div>
+              <span class="timeline-tag">Tetracampeón</span>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">1985</div>
+              <div class="timeline-desc">Segunda temporada invicta en la historia del club, consolidando su dominio regional.</div>
+              <span class="timeline-tag">Temporada Invicta</span>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">2003</div>
+              <div class="timeline-desc">El 26 de diciembre, fusión entre el Recreativo Jovita y las Estrellas Recreativas. Nace el Recreativo Estrellas F.C.</div>
+              <span class="timeline-tag">Fusión histórica</span>
+            </div>
+
+            <div class="timeline-item" role="listitem">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-desc">Título Apertura 2023, el campeonato más reciente. El sueño sigue vigente.</div>
+              <span class="timeline-tag">Último título</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       SORTEOS
+  =========================== -->
+  <section id="sorteos" aria-labelledby="sorteos-title" style="position:relative; background: linear-gradient(to bottom, rgba(13,13,13,0.82), rgba(13,13,13,0.92)), url('assets/77401984_2512979318809020_1469508547631906816_n.jpg') center/cover no-repeat;">
+    <div class="container">
+
+      <div class="sorteos-header fade-in" style="text-align:center;">
+        <p class="section-subtitle">Participá y ganá</p>
+        <h2 class="section-title" id="sorteos-title">Sorteos</h2>
+      </div>
+
+      <!-- Featured sorteo card -->
+      <div class="sorteo-card fade-in">
+        <span class="sorteo-badge">Próximo Sorteo</span>
+        <h3 class="sorteo-title">¡Grandes Sorteos 2026!</h3>
+        <p class="sorteo-desc">
+          Seguinos en redes sociales para no perderte los próximos sorteos y conocer los premios.
+        </p>
+        <div class="sorteo-date">
+          <span class="sorteo-date-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </span>
+          Fecha: A confirmar
+        </div>
+        <a href="https://www.facebook.com/REFCOficial"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-yellow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px; margin-right:6px;" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+          Ver en Facebook
+        </a>
+      </div>
+
+      <p class="sorteo-note fade-in">
+        Los sorteos son organizados por la comisión del club. Seguí nuestras redes para enterarte antes que nadie.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ===========================
+       GALERÍA
+  =========================== -->
+  <section id="galeria" style="padding: 4rem 0; background: #111;">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:2.5rem;" class="fade-in">
+        <p class="section-subtitle">Momentos del club</p>
+        <h2 class="section-title">Nuestra <span>Gente</span></h2>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+        <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
+          <img src="assets/487909254_1470027667626302_6287822945680637869_n.jpg"
+               alt="Plantel del Recreativo Estrellas FC con la hinchada"
+               style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
+               onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
+          <img src="assets/493639660_1492071012088634_4258039554602080199_n.jpg"
+               alt="Jugador del Recreativo Estrellas FC en acción"
+               style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
+               onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
+          <img src="assets/488160418_1471092664186469_7618115757013939030_n (1).jpg"
+               alt="Recreativo Estrellas FC campeón"
+               style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
+               onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       CTA — HACERSE SOCIO
+  =========================== -->
+  <section id="socio" aria-labelledby="socio-title">
+    <div class="socio-content">
+      <p class="socio-eyebrow">Sumate a la familia</p>
+      <h2 class="socio-title" id="socio-title">UNITE AL CLUB</h2>
+      <p class="socio-sub">Formá parte de la familia del Recreativo Estrellas y apoyá a tu club.</p>
+      <a href="https://recreativo-estrellas-fc-production.up.railway.app/hacerse-socio.html"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-dark">Quiero ser Socio</a>
+    </div>
+  </section>
+
+  <!-- ===========================
+       FOOTER
+  =========================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-logo">
+          <img src="assets/escudo.png" alt="Escudo REFC" style="height:56px; width:56px; object-fit:contain; filter:drop-shadow(0 0 12px rgba(245,197,24,0.35));" />
+          <div class="footer-logo-text">
+            <strong>Recreativo Estrellas F.C.</strong>
+            <span>Jovita, Córdoba, Argentina</span>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="https://www.facebook.com/REFCOficial"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Facebook oficial del club">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+            REFCOficial
+          </a>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <p class="footer-copy">
+          &copy; 2025 Recreativo Estrellas F.C. — Todos los derechos reservados.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===========================
+       JAVASCRIPT
+  =========================== -->
+  <script>
+    'use strict';
+
+    /* ---- Navbar scroll behaviour ---- */
+    const navbar   = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-link');
+
+    function handleNavbarScroll() {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    handleNavbarScroll();
+
+    /* ---- Hamburger menu ---- */
+    hamburger.addEventListener('click', function () {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close menu when a link is clicked
+    navLinkItems.forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ---- Active nav link on scroll ---- */
+    const sections = document.querySelectorAll('section[id]');
+
+    function setActiveNavLink() {
+      const scrollPos = window.scrollY + 100;
+
+      sections.forEach(function (section) {
+        const top    = section.offsetTop;
+        const bottom = top + section.offsetHeight;
+        const id     = section.getAttribute('id');
+        const link   = document.querySelector('.nav-link[href="#' + id + '"]');
+
+        if (link) {
+          if (scrollPos >= top && scrollPos < bottom) {
+            navLinkItems.forEach(function (l) { l.classList.remove('active'); });
+            link.classList.add('active');
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', setActiveNavLink, { passive: true });
+
+    /* ---- Fade-in via IntersectionObserver ---- */
+    const fadeEls = document.querySelectorAll('.fade-in');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      fadeEls.forEach(function (el) {
+        observer.observe(el);
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      fadeEls.forEach(function (el) {
+        el.classList.add('visible');
+      });
+    }
+
+    /* ---- Smooth scroll polyfill for anchor links ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const navHeight = navbar.offsetHeight;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>
