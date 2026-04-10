@@ -733,6 +733,181 @@
     }
 
     /* ===========================
+       YA SOY SOCIO
+    =========================== */
+    #mi-cuenta {
+      padding: 6rem 1.25rem;
+      background: var(--gray-900);
+    }
+
+    .micuenta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .micuenta-inner .section-subtitle {
+      margin-bottom: 2.5rem;
+      color: var(--gray-300);
+    }
+
+    .micuenta-search {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .micuenta-search input {
+      flex: 1;
+      padding: 0.85rem 1.1rem;
+      background: var(--gray-800);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .micuenta-search input:focus {
+      border-color: var(--yellow);
+    }
+
+    .micuenta-search input::placeholder {
+      color: var(--gray-500);
+    }
+
+    .micuenta-search button {
+      padding: 0.85rem 1.6rem;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+
+    .micuenta-search button:hover {
+      background: var(--yellow-dark);
+      transform: translateY(-1px);
+    }
+
+    #micuenta-resultado {
+      display: none;
+      text-align: left;
+    }
+
+    .resultado-card {
+      background: var(--gray-800);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .resultado-card.al-dia {
+      border-color: #22c55e;
+    }
+
+    .resultado-card.con-deuda {
+      border-color: #f59e0b;
+    }
+
+    .resultado-estado {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .resultado-estado .badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .badge-verde  { background: rgba(34,197,94,0.15);  color: #22c55e; }
+    .badge-naranja { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+    .resultado-nombre {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+
+    .resultado-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resultado-item label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 0.25rem;
+    }
+
+    .resultado-item span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .resultado-item span.highlight {
+      color: var(--yellow);
+      font-size: 1.4rem;
+    }
+
+    .lista-socios-btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--gray-800);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      transition: border-color var(--transition);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lista-socios-btn:hover {
+      border-color: var(--yellow);
+    }
+
+    .micuenta-hint {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .micuenta-search { flex-direction: column; }
+      .resultado-grid  { grid-template-columns: 1fr; }
+    }
+
+    /* ===========================
        FOOTER
     =========================== */
     footer {
@@ -940,6 +1115,7 @@
           <li><a href="#inicio"   class="nav-link active">Inicio</a></li>
           <li><a href="#historia" class="nav-link">Historia</a></li>
           <li><a href="#sorteos"  class="nav-link">Sorteos</a></li>
+          <li><a href="#mi-cuenta" class="nav-link">Ya soy Socio</a></li>
           <li>
             <a href="https://recreativo-estrellas-fc-production.up.railway.app/hacerse-socio.html"
                target="_blank" rel="noopener noreferrer"
@@ -965,7 +1141,7 @@
         <a href="https://recreativo-estrellas-fc-production.up.railway.app/hacerse-socio.html"
            target="_blank" rel="noopener noreferrer"
            class="btn btn-yellow">Hacerse Socio</a>
-        <a href="#historia" class="btn btn-outline">Nuestra Historia</a>
+        <a href="#mi-cuenta" class="btn btn-outline">Ya soy Socio</a>
       </div>
     </div>
 
@@ -1160,6 +1336,30 @@
   </section>
 
   <!-- ===========================
+       YA SOY SOCIO
+  =========================== -->
+  <section id="mi-cuenta" aria-labelledby="micuenta-title">
+    <div class="container">
+      <div class="micuenta-inner">
+        <p class="section-subtitle">SOCIOS</p>
+        <h2 class="section-title" id="micuenta-title">YA SOY <span>SOCIO</span></h2>
+        <p class="section-subtitle" style="margin-top:0.75rem;margin-bottom:2.5rem">
+          Ingresá tu DNI o apellido para ver tu estado de cuenta y cuotas
+        </p>
+
+        <div class="micuenta-search">
+          <input type="text" id="mcInput" placeholder="DNI o apellido..."
+                 onkeydown="if(event.key==='Enter') mcBuscar()" />
+          <button onclick="mcBuscar()">BUSCAR</button>
+        </div>
+        <p class="micuenta-hint">Si no tenés DNI registrado, buscá por apellido</p>
+
+        <div id="micuenta-resultado"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================
        CTA — HACERSE SOCIO
   =========================== -->
   <section id="socio" aria-labelledby="socio-title">
@@ -1297,6 +1497,87 @@
       fadeEls.forEach(function (el) {
         el.classList.add('visible');
       });
+    }
+
+    /* ---- Ya soy socio ---- */
+    const APP = 'https://recreativo-estrellas-fc-production.up.railway.app';
+    const API_PUBLIC = APP + '/api/public/socio';
+
+    async function mcBuscar() {
+      const q   = document.getElementById('mcInput').value.trim();
+      const div = document.getElementById('micuenta-resultado');
+      if (!q) { div.style.display = 'none'; return; }
+
+      div.style.display = 'block';
+      div.innerHTML = '<p style="color:#aaa;text-align:center;padding:1.5rem">Buscando...</p>';
+
+      const esDni = /^\d+$/.test(q);
+      const url   = esDni ? `${API_PUBLIC}?dni=${q}` : `${API_PUBLIC}?q=${encodeURIComponent(q)}`;
+
+      try {
+        const res  = await fetch(url);
+        const data = await res.json();
+
+        if (res.status === 404 || !data.length) {
+          div.innerHTML = `
+            <div class="resultado-card" style="text-align:center">
+              <p style="font-size:1.5rem;margin-bottom:0.5rem">❌</p>
+              <p style="color:#aaa">No se encontró ningún socio con ese ${esDni ? 'DNI' : 'apellido'}.</p>
+              <p style="color:#666;font-size:0.85rem;margin-top:0.5rem">¿Todavía no sos socio?
+                <a href="${APP}/hacerse-socio.html" target="_blank" style="color:var(--yellow)">Hacete socio acá</a>
+              </p>
+            </div>`;
+          return;
+        }
+
+        if (data.length === 1) {
+          mcMostrarSocio(data[0]);
+        } else {
+          div.innerHTML = `
+            <p style="color:#aaa;margin-bottom:1rem;font-size:0.9rem">Se encontraron ${data.length} socios. Seleccioná el tuyo:</p>
+            ${data.map((s, i) => `
+              <button class="lista-socios-btn" onclick="mcMostrarSocio(${JSON.stringify(s).replace(/"/g, '&quot;')})">
+                <span>${s.nombre} ${s.apellido}</span>
+                <span style="font-size:0.8rem;color:#aaa">${s.estado === 'al-dia' ? '✅ Al día' : '⚠️ Con deuda'}</span>
+              </button>
+            `).join('')}`;
+        }
+      } catch(e) {
+        div.innerHTML = `<div class="resultado-card"><p style="color:#aaa;text-align:center">Error al conectar. Intentá de nuevo.</p></div>`;
+      }
+    }
+
+    function mcMostrarSocio(s) {
+      const div     = document.getElementById('micuenta-resultado');
+      const esAlDia = s.estado === 'al-dia';
+      div.innerHTML = `
+        <div class="resultado-card ${esAlDia ? 'al-dia' : 'con-deuda'}">
+          <div class="resultado-estado">
+            <span class="badge ${esAlDia ? 'badge-verde' : 'badge-naranja'}">
+              ${esAlDia ? '✅ Al día' : '⚠️ Con deuda'}
+            </span>
+          </div>
+          <p class="resultado-nombre">${s.nombre} ${s.apellido}</p>
+          <div class="resultado-grid" style="margin-top:1rem">
+            <div class="resultado-item">
+              <label>Cuotas pagas</label>
+              <span class="highlight">${s.cuotas_pagas}</span>
+            </div>
+            <div class="resultado-item">
+              <label>Estado este mes</label>
+              <span style="color:${esAlDia ? '#22c55e' : '#f59e0b'}">${esAlDia ? 'Pagado ✓' : 'Pendiente'}</span>
+            </div>
+          </div>
+          ${!esAlDia ? `
+          <a href="${APP}/hacerse-socio.html" target="_blank" rel="noopener"
+             style="display:inline-block;margin-top:0.5rem;padding:0.75rem 1.5rem;background:var(--yellow);color:#000;font-weight:700;border-radius:8px;font-size:0.9rem;text-decoration:none">
+            Pagar cuotas →
+          </a>` : `
+          <p style="color:#22c55e;font-size:0.9rem;margin-top:0.5rem">¡Gracias por estar al día con el club! 🏆</p>`}
+        </div>
+        <p class="micuenta-hint" style="margin-top:0.75rem">
+          ¿No es tu cuenta? <a href="#" onclick="document.getElementById('micuenta-resultado').style.display='none';document.getElementById('mcInput').focus();return false;" style="color:var(--yellow)">Buscá de nuevo</a>
+        </p>`;
     }
 
     /* ---- Smooth scroll polyfill for anchor links ---- */
