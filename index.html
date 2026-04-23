@@ -1550,7 +1550,6 @@
     function mcMostrarSocio(s) {
       const div     = document.getElementById('micuenta-resultado');
       const esAlDia = s.estado === 'al-dia';
-      const dniInput = encodeURIComponent(document.getElementById('mcInput').value.trim());
       div.innerHTML = `
         <div class="resultado-card ${esAlDia ? 'al-dia' : 'con-deuda'}">
           <div class="resultado-estado">
@@ -1570,7 +1569,8 @@
             </div>
           </div>
           ${!esAlDia ? `
-          <a href="${APP}/?dni=${dniInput}" target="_blank" rel="noopener"
+          <a href="${APP}/mi-cuenta.html" target="_blank" rel="noopener"
+
              style="display:inline-block;margin-top:0.5rem;padding:0.75rem 1.5rem;background:var(--yellow);color:#000;font-weight:700;border-radius:8px;font-size:0.9rem;text-decoration:none">
             Pagar cuotas →
           </a>` : `
