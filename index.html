@@ -1550,6 +1550,7 @@
     function mcMostrarSocio(s) {
       const div     = document.getElementById('micuenta-resultado');
       const esAlDia = s.estado === 'al-dia';
+      const dniSocio = s.dni || document.getElementById('mcInput').value.trim();
       div.innerHTML = `
         <div class="resultado-card ${esAlDia ? 'al-dia' : 'con-deuda'}">
           <div class="resultado-estado">
@@ -1569,16 +1570,37 @@
             </div>
           </div>
           ${!esAlDia ? `
-          <a href="${APP}/mi-cuenta.html" target="_blank" rel="noopener"
-
-             style="display:inline-block;margin-top:0.5rem;padding:0.75rem 1.5rem;background:var(--yellow);color:#000;font-weight:700;border-radius:8px;font-size:0.9rem;text-decoration:none">
+          <button data-dni="${dniSocio}" onclick="mcPagarCuota(this.dataset.dni, this)"
+             style="display:inline-block;margin-top:0.5rem;padding:0.75rem 1.5rem;background:var(--yellow);color:#000;font-weight:700;border-radius:8px;font-size:0.9rem;cursor:pointer;border:none;font-family:'Poppins',sans-serif">
             Pagar cuotas →
-          </a>` : `
+          </button>
+          <div id="mcPagoMsg" style="display:none;margin-top:0.5rem;font-size:0.82rem;color:#f59e0b"></div>
+          ` : `
           <p style="color:#22c55e;font-size:0.9rem;margin-top:0.5rem">¡Gracias por estar al día con el club! 🏆</p>`}
         </div>
         <p class="micuenta-hint" style="margin-top:0.75rem">
           ¿No es tu cuenta? <a href="#" onclick="document.getElementById('micuenta-resultado').style.display='none';document.getElementById('mcInput').focus();return false;" style="color:var(--yellow)">Buscá de nuevo</a>
         </p>`;
+    }
+
+    async function mcPagarCuota(dni, btn) {
+      const msg = document.getElementById('mcPagoMsg');
+      btn.textContent = 'Procesando...';
+      btn.disabled = true;
+      try {
+        const resp = await fetch(`${APP}/api/socio-pagar-mes-actual`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ dni })
+        });
+        const data = await resp.json();
+        if (!resp.ok) throw new Error(data.error || 'Error al generar el pago');
+        window.location.href = data.init_point;
+      } catch(e) {
+        if (msg) { msg.textContent = e.message; msg.style.display = 'block'; }
+        btn.textContent = 'Pagar cuotas →';
+        btn.disabled = false;
+      }
     }
 
     /* ---- Smooth scroll polyfill for anchor links ---- */
