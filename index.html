@@ -1085,6 +1085,83 @@
         max-width: 280px;
         text-align: center;
       }
+
+      /* Secciones — menos padding en mobile chico */
+      #historia, #sorteos {
+        padding: 3rem 1rem;
+      }
+
+      #socio {
+        padding: 3rem 1rem;
+      }
+
+      #mi-cuenta {
+        padding: 3.5rem 1rem;
+      }
+
+      #galeria {
+        padding: 3rem 0;
+      }
+
+      /* Sorteo card más compacta */
+      .sorteo-card {
+        padding: 1.5rem 1.1rem;
+      }
+
+      /* Botón "Quiero ser Socio" full-width */
+      .btn-dark {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      /* Footer social links apilados */
+      .footer-social {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .footer-social a {
+        width: 100%;
+        max-width: 260px;
+        justify-content: center;
+      }
+
+      /* Título hero más compacto */
+      .hero-badge {
+        font-size: 0.65rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* Pantallas muy pequeñas (< 360px) */
+    @media (max-width: 360px) {
+      .container {
+        padding: 0 0.9rem;
+      }
+
+      .sorteo-card {
+        padding: 1.25rem 0.9rem;
+      }
+
+      .resultado-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #stats {
+        padding: 1.5rem 0.9rem;
+      }
+
+      .stat-item {
+        padding: 0.5rem 0.5rem;
+      }
+    }
+
+    /* Galería responsive */
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -1211,6 +1288,7 @@
           <div>
             <img src="assets/480445950_9150151391758413_8892936117047239910_n.jpg"
                  alt="Plantel histórico de Estrellas Recreativas"
+                 loading="lazy"
                  style="width:100%; border-radius:10px; border:1px solid #2a2a2a; filter:grayscale(15%);" />
             <p style="font-size:0.72rem; color:#666; text-align:center; margin-top:0.4rem;">Plantel histórico — Estrellas Recreativas F.C.</p>
           </div>
@@ -1313,22 +1391,25 @@
         <p class="section-subtitle">Momentos del club</p>
         <h2 class="section-title">Nuestra <span>Gente</span></h2>
       </div>
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
+      <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
         <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
           <img src="assets/487909254_1470027667626302_6287822945680637869_n.jpg"
                alt="Plantel del Recreativo Estrellas FC con la hinchada"
+               loading="lazy"
                style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
                onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
         </div>
         <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
           <img src="assets/493639660_1492071012088634_4258039554602080199_n.jpg"
                alt="Jugador del Recreativo Estrellas FC en acción"
+               loading="lazy"
                style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
                onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
         </div>
         <div class="fade-in" style="border-radius:12px; overflow:hidden; aspect-ratio:4/3;">
           <img src="assets/488160418_1471092664186469_7618115757013939030_n (1).jpg"
                alt="Recreativo Estrellas FC campeón"
+               loading="lazy"
                style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;"
                onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
         </div>
@@ -1403,7 +1484,7 @@
         <div class="footer-divider"></div>
 
         <p class="footer-copy">
-          &copy; 2025 Recreativo Estrellas F.C. — Todos los derechos reservados.
+          &copy; 2026 Recreativo Estrellas F.C. — Todos los derechos reservados.
         </p>
 
       </div>
