@@ -662,6 +662,369 @@
     }
 
     /* ===========================
+       HERO — NUEVO LAYOUT CON CELULAR
+    =========================== */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.45), rgba(13,13,13,0.88)), url('assets/488160418_1471092664186469_7618115757013939030_n (1).jpg') center/cover no-repeat;
+      padding: 6rem 1.25rem 4rem;
+      overflow: hidden;
+    }
+
+    #inicio::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(245,197,24,0.02) 60px, rgba(245,197,24,0.02) 61px);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5rem;
+      width: 100%;
+      max-width: 1100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- Phone mockup ---- */
+    .phone-wrap {
+      flex-shrink: 0;
+      transform: translateX(-80px) rotate(-4deg);
+      opacity: 0;
+      transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease;
+      filter: drop-shadow(-12px 20px 40px rgba(0,0,0,0.6));
+    }
+
+    .phone-wrap.animate-in {
+      transform: translateX(0) rotate(-2deg);
+      opacity: 1;
+      animation: phoneFloat 3.5s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    @keyframes phoneFloat {
+      0%, 100% { transform: translateX(0) rotate(-2deg) translateY(0); }
+      50%       { transform: translateX(0) rotate(-2deg) translateY(-10px); }
+    }
+
+    .phone-frame {
+      width: 270px;
+      background: #0a0a0a;
+      border-radius: 40px;
+      border: 3px solid #2a2a2a;
+      padding: 14px 10px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px #111,
+        inset 0 0 0 1px #333,
+        0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    /* Notch */
+    .phone-notch {
+      width: 90px;
+      height: 22px;
+      background: #0a0a0a;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto 8px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .phone-notch::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+    }
+
+    .phone-notch::after {
+      content: '';
+      width: 40px; height: 5px;
+      border-radius: 3px;
+      background: #1a1a1a;
+    }
+
+    /* Phone screen */
+    .phone-screen {
+      background: #0d0d0d;
+      border-radius: 28px;
+      overflow: hidden;
+      padding: 18px 14px 20px;
+    }
+
+    .ph-logo-wrap {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .ph-logo-wrap img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(245,197,24,0.5));
+      margin: 0 auto;
+    }
+
+    .ph-club-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: #fff;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .ph-club-name span { color: var(--yellow); }
+
+    .ph-location {
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #666;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .ph-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+      margin-bottom: 12px;
+    }
+
+    /* Tabs */
+    .ph-tabs {
+      display: flex;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #222;
+    }
+
+    .ph-tab {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 0.48rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .ph-tab.active {
+      background: var(--yellow);
+      color: #000;
+    }
+
+    .ph-tab.inactive {
+      background: #151515;
+      color: #555;
+    }
+
+    /* Form */
+    .ph-form {
+      background: #141414;
+      border-radius: 8px;
+      padding: 10px 10px 12px;
+      border: 1px solid #222;
+    }
+
+    .ph-form-title {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .ph-form-sub {
+      font-size: 0.44rem;
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .ph-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .ph-field label {
+      display: block;
+      font-size: 0.42rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 3px;
+    }
+
+    .ph-input {
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      border-radius: 5px;
+      padding: 5px 7px;
+      font-size: 0.48rem;
+      color: #ccc;
+      width: 100%;
+      min-height: 18px;
+      position: relative;
+    }
+
+    .ph-input.typing {
+      border-color: var(--yellow);
+    }
+
+    .ph-cursor {
+      display: inline-block;
+      width: 1px;
+      height: 0.55rem;
+      background: var(--yellow);
+      margin-left: 1px;
+      vertical-align: middle;
+      animation: blink 0.7s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .ph-btn-wrap {
+      position: relative;
+    }
+
+    .ph-btn.pulsing {
+      animation: btnPulse 0.6s ease-in-out 3;
+    }
+
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); box-shadow: none; }
+      50%       { transform: scale(1.04); box-shadow: 0 0 12px rgba(245,197,24,0.7); }
+    }
+
+    .ph-success {
+      display: none;
+      text-align: center;
+      padding: 14px 8px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ph-success-icon {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .ph-success-text {
+      font-size: 0.52rem;
+      color: #22c55e;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .ph-success-sub {
+      font-size: 0.44rem;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .ph-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1a1600;
+      border: 1px solid rgba(245,197,24,0.2);
+      border-radius: 6px;
+      padding: 7px 9px;
+      margin-bottom: 8px;
+    }
+
+    .ph-price-label {
+      font-size: 0.46rem;
+      color: #888;
+      line-height: 1.4;
+    }
+
+    .ph-price-label span {
+      display: block;
+      font-size: 0.4rem;
+      color: #555;
+    }
+
+    .ph-price-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+    }
+
+    .ph-btn {
+      display: block;
+      width: 100%;
+      background: var(--yellow);
+      color: #000;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px 4px;
+      border-radius: 6px;
+    }
+
+    /* ---- Hero text (derecha) ---- */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      text-align: left;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+      }
+      .hero-content {
+        text-align: center;
+        order: 1;
+      }
+      .phone-wrap {
+        order: 2;
+        transform: translateY(40px) rotate(-2deg);
+      }
+      .phone-wrap.animate-in {
+        transform: translateY(0) rotate(-2deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .phone-frame {
+        width: 230px;
+      }
+    }
+
+    /* ===========================
        CTA — HACERSE SOCIO
     =========================== */
     #socio {
@@ -1209,18 +1572,92 @@
        HERO
   =========================== -->
   <section id="inicio" role="banner">
-    <div class="hero-content">
-      <img src="assets/escudo.png" alt="Escudo Recreativo Estrellas FC" style="width:110px; height:110px; object-fit:contain; margin-bottom:1rem; filter:drop-shadow(0 0 24px rgba(245,197,24,0.5));" />
-      <p class="hero-badge" aria-label="Jovita, Córdoba, Argentina">Jovita · Córdoba · Argentina</p>
-      <h1 class="hero-title">Recreativo<br>Estrellas F.C.</h1>
-      <p class="hero-location">Jovita, Córdoba</p>
-      <p class="hero-subtitle">18 Veces Campeones de la Liga General Roca</p>
-      <div class="hero-buttons">
-        <a href="https://recreativo-estrellas-fc.onrender.com/hacerse-socio.html"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn-yellow">Hacerse Socio</a>
-        <a href="#mi-cuenta" class="btn btn-outline">Ya soy Socio</a>
+    <div class="hero-inner">
+
+      <!-- ---- Celular (izquierda) ---- -->
+      <div class="phone-wrap" id="phoneWrap" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+
+            <div class="ph-logo-wrap">
+              <img src="assets/escudo.png" alt="" />
+            </div>
+            <div class="ph-club-name">RECREATIVO <span>ESTRELLAS</span> F.C.</div>
+            <div class="ph-location">Jovita, Córdoba</div>
+            <div class="ph-divider"></div>
+
+            <div class="ph-tabs">
+              <div class="ph-tab active">Nuevo Socio</div>
+              <div class="ph-tab inactive">Ya soy Socio</div>
+            </div>
+
+            <div class="ph-form">
+              <div class="ph-form-title">Hacerme socio</div>
+              <div class="ph-form-sub">Completá tus datos y pagá la primera cuota para unirte al club.</div>
+
+              <div id="ph-form-fields">
+                <div class="ph-row">
+                  <div class="ph-field">
+                    <label>Nombre *</label>
+                    <div class="ph-input" id="ph-nombre"></div>
+                  </div>
+                  <div class="ph-field">
+                    <label>Apellido *</label>
+                    <div class="ph-input" id="ph-apellido"></div>
+                  </div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-field">
+                    <label>DNI *</label>
+                    <div class="ph-input" id="ph-dni"></div>
+                  </div>
+                  <div class="ph-field">
+                    <label>Teléfono *</label>
+                    <div class="ph-input" id="ph-tel"></div>
+                  </div>
+                </div>
+
+                <div class="ph-price-row">
+                  <div class="ph-price-label">
+                    Primera cuota
+                    <span>Incluye alta como socio</span>
+                  </div>
+                  <div class="ph-price-value">$10.000</div>
+                </div>
+
+                <div class="ph-btn-wrap">
+                  <div class="ph-btn" id="ph-btn-pagar">Pagar con Mercado Pago</div>
+                </div>
+              </div>
+
+              <!-- Estado de éxito -->
+              <div class="ph-success" id="ph-success">
+                <div class="ph-success-icon">✅</div>
+                <div class="ph-success-text">¡Listo! Sos socio</div>
+                <div class="ph-success-sub">Recreativo Estrellas F.C.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
+
+      <!-- ---- Texto (derecha) ---- -->
+      <div class="hero-content">
+        <img src="assets/escudo.png" alt="Escudo Recreativo Estrellas FC" style="width:90px; height:90px; object-fit:contain; margin-bottom:1rem; filter:drop-shadow(0 0 24px rgba(245,197,24,0.5));" />
+        <p class="hero-badge" aria-label="Jovita, Córdoba, Argentina">Jovita · Córdoba · Argentina</p>
+        <h1 class="hero-title">Recreativo<br>Estrellas F.C.</h1>
+        <p class="hero-location">Jovita, Córdoba</p>
+        <p class="hero-subtitle">18 Veces Campeones de la Liga General Roca</p>
+        <div class="hero-buttons">
+          <a href="https://recreativo-estrellas-fc.onrender.com/hacerse-socio.html"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-yellow">Hacerse Socio</a>
+          <a href="#mi-cuenta" class="btn btn-outline">Ya soy Socio</a>
+        </div>
+      </div>
+
     </div>
 
     <div class="hero-scroll" aria-hidden="true">
@@ -1683,6 +2120,77 @@
         btn.textContent = 'Pagar cuotas →';
         btn.disabled = false;
       }
+    }
+
+    /* ---- Animación de entrada del celular ---- */
+    setTimeout(function() {
+      const phone = document.getElementById('phoneWrap');
+      if (phone) {
+        phone.classList.add('animate-in');
+        setTimeout(startPhoneAnimation, 1200);
+      }
+    }, 300);
+
+    /* ---- Tipeo automático en el celular ---- */
+    function typeInto(elId, text, speed, cb) {
+      var el = document.getElementById(elId);
+      if (!el) { if (cb) cb(); return; }
+      el.classList.add('typing');
+      el.innerHTML = '<span class="ph-cursor"></span>';
+      var i = 0;
+      var interval = setInterval(function() {
+        if (i >= text.length) {
+          clearInterval(interval);
+          el.classList.remove('typing');
+          el.innerHTML = text; // cursor desaparece al terminar
+          if (cb) setTimeout(cb, 200);
+          return;
+        }
+        el.innerHTML = text.substring(0, i + 1) + '<span class="ph-cursor"></span>';
+        i++;
+      }, speed);
+    }
+
+    function startPhoneAnimation() {
+      var fields   = document.getElementById('ph-form-fields');
+      var success  = document.getElementById('ph-success');
+      var btnPagar = document.getElementById('ph-btn-pagar');
+
+      // Reset
+      ['ph-nombre','ph-apellido','ph-dni','ph-tel'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.innerHTML = '';
+      });
+      if (fields)  fields.style.display  = 'block';
+      if (success) success.style.display = 'none';
+      if (btnPagar) btnPagar.classList.remove('pulsing');
+
+      // Secuencia de tipeo
+      typeInto('ph-nombre',   'Juan',       90, function() {
+      typeInto('ph-apellido', 'Pérez',      90, function() {
+      typeInto('ph-dni',      '32458971',   70, function() {
+      typeInto('ph-tel',      '3513012345', 65, function() {
+
+        // Pulsar el botón
+        if (btnPagar) {
+          btnPagar.classList.add('pulsing');
+        }
+
+        // Mostrar éxito
+        setTimeout(function() {
+          if (fields)  fields.style.display  = 'none';
+          if (success) {
+            success.style.display = 'block';
+            success.style.animation = 'none';
+            void success.offsetWidth; // reflow
+            success.style.animation = '';
+          }
+
+          // Loop: reiniciar después de 2.5s
+          setTimeout(startPhoneAnimation, 2500);
+        }, 1800);
+
+      }); }); }); });
     }
 
     /* ---- Smooth scroll polyfill for anchor links ---- */
