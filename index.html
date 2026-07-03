@@ -659,6 +659,93 @@
     }
 
     /* ===========================
+       BANDA DEL ESTE
+    =========================== */
+    #banda {
+      padding: 6rem 1.25rem;
+      background: #0a0a0a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #banda::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(245,197,24,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .banda-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .banda-desc {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .banda-fotos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .banda-foto-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid rgba(245,197,24,0.15);
+    }
+
+    .banda-foto-wrap img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: grayscale(10%);
+    }
+
+    .banda-foto-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .banda-foto-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+    }
+
+    .banda-quote {
+      text-align: center;
+      margin-top: 3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      .banda-fotos { grid-template-columns: 1fr; }
+      .banda-foto-wrap img { height: 220px; }
+    }
+
+    /* ===========================
        SORTEOS
     =========================== */
     #sorteos {
@@ -1647,6 +1734,7 @@
         <ul class="nav-links" id="nav-links" role="list">
           <li><a href="#inicio"   class="nav-link active">Inicio</a></li>
           <li><a href="#historia" class="nav-link">Historia</a></li>
+          <li><a href="#banda"    class="nav-link">La Banda</a></li>
           <li><a href="#sorteos"  class="nav-link">Sorteos</a></li>
           <li><a href="#mi-cuenta" class="nav-link">Ya soy Socio</a></li>
           <li>
@@ -1899,6 +1987,43 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ===========================
+       BANDA DEL ESTE
+  =========================== -->
+  <section id="banda" aria-labelledby="banda-title">
+    <div class="container">
+
+      <div class="banda-header fade-in">
+        <p class="section-subtitle">La hinchada</p>
+        <h2 class="section-title" id="banda-title">La Banda <span>del Este</span></h2>
+      </div>
+
+      <p class="banda-desc fade-in">
+        La Banda del Este es la hinchada oficial del Recreativo Estrellas F.C. Su presencia, sus banderas y su pasión son parte fundamental de la identidad del club. Siempre al lado del equipo, en las buenas y en las malas.
+      </p>
+
+      <div class="banda-fotos fade-in">
+        <div class="banda-foto-wrap">
+          <img src="assets/image-1783041741827.webp"
+               alt="La Banda del Este - Recreativo Estrellas F.C."
+               loading="lazy" />
+          <div class="banda-foto-overlay">Recreativo Estrellas Fútbol Club — Jovita (Cba.)</div>
+        </div>
+        <div class="banda-foto-wrap">
+          <img src="assets/image-1783041753112.webp"
+               alt="La Banda del Este en la tribuna"
+               loading="lazy" />
+          <div class="banda-foto-overlay">La Banda del Este — siempre presente</div>
+        </div>
+      </div>
+
+      <div class="banda-quote fade-in">
+        "Nunca Caminarás Solo"
+      </div>
+
     </div>
   </section>
 
