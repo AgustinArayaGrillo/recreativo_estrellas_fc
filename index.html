@@ -567,6 +567,98 @@
     }
 
     /* ===========================
+       PALMARÉS (columna derecha historia)
+    =========================== */
+    .palmares-card {
+      background: rgba(245,197,24,0.04);
+      border: 1px solid rgba(245,197,24,0.15);
+      border-radius: 12px;
+      padding: 2rem 1.75rem;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .palmares-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      color: var(--yellow);
+      letter-spacing: 0.18em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .palmares-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(245,197,24,0.2);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 1.1rem 1rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: var(--yellow);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .palmares-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .palmares-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .palmares-list li::before {
+      content: '🏆';
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .palmares-list .pl-year {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--yellow);
+      font-size: 0.95rem;
+      min-width: 3.5rem;
+    }
+
+    /* ===========================
        SORTEOS
     =========================== */
     #sorteos {
@@ -1772,6 +1864,40 @@
           </div>
         </div>
 
+        <!-- Palmarés — columna derecha del timeline -->
+        <div class="fade-in fade-in-delay-2">
+          <div class="palmares-card">
+            <div class="palmares-title">🏅 Palmarés</div>
+
+            <div class="stat-grid">
+              <div class="stat-box">
+                <span class="stat-number" data-count="18">0</span>
+                <span class="stat-label">Títulos regionales</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number" data-count="56">0</span>
+                <span class="stat-label">Años de historia</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number" data-count="2">0</span>
+                <span class="stat-label">Temporadas invictas</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-number" data-count="4">0</span>
+                <span class="stat-label">Títulos consecutivos</span>
+              </div>
+            </div>
+
+            <ul class="palmares-list">
+              <li><span class="pl-year">1970–73</span> Tetracampeonato Regional</li>
+              <li><span class="pl-year">1972</span> Temporada invicta</li>
+              <li><span class="pl-year">1985</span> Temporada invicta</li>
+              <li><span class="pl-year">2003</span> Fundación Recreativo Estrellas</li>
+              <li><span class="pl-year">2023</span> Apertura — título más reciente</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2121,6 +2247,36 @@
         btn.disabled = false;
       }
     }
+
+    /* ---- Contadores animados del palmarés ---- */
+    (function() {
+      var counted = false;
+      function animateCounters() {
+        if (counted) return;
+        var els = document.querySelectorAll('.stat-number[data-count]');
+        if (!els.length) return;
+        counted = true;
+        els.forEach(function(el) {
+          var target = parseInt(el.getAttribute('data-count'), 10);
+          var duration = 1200;
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var ease = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(ease * target);
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(step);
+        });
+      }
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) animateCounters(); });
+      }, { threshold: 0.3 });
+      var card = document.querySelector('.palmares-card');
+      if (card) obs.observe(card);
+    })();
 
     /* ---- Animación de entrada del celular ---- */
     setTimeout(function() {
